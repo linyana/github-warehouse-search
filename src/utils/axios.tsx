@@ -4,9 +4,11 @@ axios.defaults.timeout = 100000;
 const baseURL = "https://api.github.com/users";
 
 const GetRepos = async (userName: string) => {
+  let answer;
   await axios
     .get(`${baseURL}/${userName}/repos`)
-    .then((response) => console.log(response.data));
+    .then((response) => (answer = response.data));
+  return answer;
 };
 
 export default GetRepos;
