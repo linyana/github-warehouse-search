@@ -5,21 +5,13 @@ const { Content } = Layout;
 
 const App: React.FC = () => (
 	<>
-		<Content
-			className="site-layout"
-			style={{ padding: "0 50px", marginTop: 64 }}
-		>
-			<Breadcrumb style={{ margin: "16px 0" }}>
+		<Content className="site-layout">
+			<Breadcrumb>
 				<Breadcrumb.Item>Home</Breadcrumb.Item>
 				<Breadcrumb.Item>List</Breadcrumb.Item>
 				<Breadcrumb.Item>App</Breadcrumb.Item>
 			</Breadcrumb>
-			<div
-				className="site-layout-background"
-				style={{ padding: 24, minHeight: 380 }}
-			>
-				Content
-			</div>
+			<div className="site-layout-background">Content</div>
 		</Content>
 	</>
 );

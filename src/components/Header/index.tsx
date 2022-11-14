@@ -4,7 +4,7 @@ import React from "react";
 const { Header } = Layout;
 
 const App: React.FC = () => (
-	<Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
+	<Header>
 		<div className="logo" />
 		<Menu
 			theme="dark"

@@ -17,3 +17,33 @@ section.ant-layout {
 .site-layout-background {
   height: 90%;
 }
+
+/* Header */
+
+Header {
+  position: fixed; 
+  z-index: 1;
+  width: 100%;
+}
+
+/* Content */
+
+main.ant-layout-content {
+  padding: 0 50px;
+  margin-top: 64px;
+}
+
+nav.ant-breadcrumb {
+  margin: 16px 0;
+}
+
+.site-layout-background {
+  padding: 24px;
+  min-height: 380px;
+}
+
+/* Footer */
+
+Footer {
+  text-align: center;
+}

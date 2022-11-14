@@ -4,9 +4,7 @@ import React from "react";
 const { Footer } = Layout;
 
 const App: React.FC = () => (
-	<Footer style={{ textAlign: "center" }}>
-		Ant Design ©2018 Created by Ant UED
-	</Footer>
+	<Footer>Ant Design ©2018 Created by Ant UED</Footer>
 );
 
 export default App;
