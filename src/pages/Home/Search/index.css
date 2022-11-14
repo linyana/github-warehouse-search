@@ -15,11 +15,12 @@
   height: 46px;
   font-size: 20px;
   font-weight: 700;
-  color: rgb(117, 159, 238);
+  color: rgb(112, 116, 124);
 }
 
 .search input:focus {
   width: 40%;
   box-shadow: 0 0 5px rgba(117, 159, 238, 0.5);
   border: 2px solid rgba(117, 159, 238, 0.3);
+  color: rgb(117, 159, 238);
 }
