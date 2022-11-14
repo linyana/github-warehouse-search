@@ -1,5 +1,12 @@
+import { Spin } from "antd";
 import React from "react";
 
-export default function App() {
-  return <div>Loading</div>;
-}
+import "./index.css";
+
+const App: React.FC = () => (
+  <div className={"loading"}>
+    <Spin size="large" tip="Loading..." />
+  </div>
+);
+
+export default App;

@@ -1,0 +1,8 @@
+.loading {
+  position: absolute;
+  top: 45%;
+  left: 25%;
+  width: 50%;
+  text-align: center;
+  height: 50%;
+}
