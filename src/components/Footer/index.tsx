@@ -4,7 +4,9 @@ import React from "react";
 const { Footer } = Layout;
 
 const App: React.FC = () => (
-	<Footer>Ant Design ©2018 Created by Ant UED</Footer>
+  <Footer style={{ fontWeight: "700", color: "rgb(112, 116, 124)" }}>
+    林衍
+  </Footer>
 );
 
 export default App;

@@ -1,0 +1,26 @@
+.check {
+  cursor: pointer;
+  padding: 5px;
+  width: 50px;
+  text-align: center;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  background-color: rgb(65, 116, 209);
+}
+
+.ant-spin-container {
+  height: 90%;
+}
+
+.ant-table-wrapper,
+.ant-spin-container,
+.ant-spin-nested-loading,
+.ant-spin-container {
+  height: 100%;
+}
+
+.ant-table {
+  overflow-y: scroll;
+  height: 90%;
+}
