@@ -7,6 +7,7 @@ import GetRepos from "../../utils/axios";
 import useFormatTime from "../../hooks/useFormatTime";
 
 import "./index.css";
+import { string } from "yargs";
 
 interface DataType {
   key?: React.Key;
@@ -14,6 +15,8 @@ interface DataType {
   description?: string;
   createTime?: string;
   updateTime?: string;
+  authorImg?: string;
+  languages?: string;
 }
 
 const columns: ColumnsType<DataType> = [
@@ -48,6 +51,7 @@ const columns: ColumnsType<DataType> = [
 ];
 
 const checkMore = (row: any, key: any) => {
+  // 获取当前点击的列表信息，通过props传给子组件显示出来
   const obj = data.filter((_, index) => {
     return data[index].key === Number(key);
   });
@@ -67,13 +71,22 @@ const App: React.FC = () => {
       data = [];
       for (let i = 0; i < response?.length; i++) {
         data.push({
+          // key
           key: response[i].id,
+          // 名字
           name: response[i].name,
+          // 描述
           description: response[i].description || "作者太懒了，没有进行描述",
+          // 起始时间
           // eslint-disable-next-line react-hooks/rules-of-hooks
           createTime: useFormatTime(response[i].created_at),
+          // 更新时间
           // eslint-disable-next-line react-hooks/rules-of-hooks
           updateTime: useFormatTime(response[i].updated_at),
+          // 作者图片
+          authorImg: response[i].owner.avatar_url,
+          // 语言
+          languages: response[i].language_url,
         });
       }
       setTableData(data);
