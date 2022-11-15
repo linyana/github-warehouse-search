@@ -1,5 +1,9 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 #root {
   height: 100%;
+}
+
+* {
+  color: #4e4d4d;
 }

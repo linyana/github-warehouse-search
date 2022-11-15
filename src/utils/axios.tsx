@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.timeout = 100000;
 const baseURL = "https://api.github.com/users";
 
-const GetRepos = async (userName: string) => {
+export const GetRepos = async (userName: string) => {
   let answer;
   await axios
     .get(`${baseURL}/${userName}/repos`)
@@ -11,7 +11,13 @@ const GetRepos = async (userName: string) => {
   return answer;
 };
 
-export default GetRepos;
+export const GetResponse = async (url: string) => {
+  let answer;
+  await axios.get(url).then((response) => {
+    answer = response;
+  });
+  return answer;
+};
 
 /* axios.interceptors.request.use(
   (config) => {
