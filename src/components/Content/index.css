@@ -1,0 +1,39 @@
+.layout_left {
+  padding: 40px;
+  width: 28%;
+}
+
+.layout_right {
+  width: 68%;
+  height: 100%;
+}
+
+.layout_content {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.person {
+  margin-top: 50px;
+}
+
+.layout_content > div {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 1200px) {
+  .layout_left {
+    display: none;
+  }
+
+  main.ant-layout-content {
+    padding: 0 !important;
+    margin: auto;
+    width: 100%;
+  }
+
+  .layout_content {
+    min-width: 500px;
+  }
+}

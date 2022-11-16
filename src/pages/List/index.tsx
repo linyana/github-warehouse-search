@@ -9,29 +9,35 @@ import useFormatTime from "../../hooks/useFormatTime";
 
 import "./index.css";
 
-interface DataType {
+interface DataTypes {
   key?: React.Key;
   name?: string;
   description?: string;
   createTime?: string;
   updateTime?: string;
-  authorImg?: string;
   languages?: string;
   contributors?: string;
-  author?: string;
   url?: string;
 }
 
-let data: DataType[] = [];
+interface AuthorTypes {
+  author?: string;
+  authorUrl?: string;
+  authorImg?: string;
+}
+
+let data: DataTypes[] = [];
+let author: AuthorTypes;
 
 const App: React.FC = () => {
-  const [tableData, setTableData] = useState<Array<DataType>>();
+  const [tableData, setTableData] = useState<Array<DataTypes>>();
   const [isShow, setIsShow] = useState<string>("hover_page_false");
   const [isDisplay, setIsDisplay] = useState({ display: "none" });
   const [obj, setObj] = useState({});
+  const [authorData, setAuthorData] = useState<AuthorTypes>({});
 
   // 数据列表
-  const columns: ColumnsType<DataType> = [
+  const columns: ColumnsType<DataTypes> = [
     {
       title: "名字",
       dataIndex: "name",
@@ -65,37 +71,45 @@ const App: React.FC = () => {
   // 获取路由参数
   const getsearchState = useLocation().state;
   const searchState =
-    getsearchState === null ? "lin" : getsearchState.searchState;
+    getsearchState === null ? "linyana" : getsearchState.searchState;
   // 获取接口数据
   useEffect(() => {
     GetRepos(searchState).then((response: any) => {
       data = [];
-      for (let i = 0; i < response?.length; i++) {
+      author = {};
+      for (let i = 0; i < response.data?.length; i++) {
         data.push({
           // key
-          key: response[i].id,
+          key: response.data[i].id,
           // 名字
-          name: response[i].name,
+          name: response.data[i].name,
           // 描述
-          description: response[i].description || "作者太懒了，没有进行描述",
+          description:
+            response.data[i].description || "作者太懒了，没有进行描述",
           // 起始时间
           // eslint-disable-next-line react-hooks/rules-of-hooks
-          createTime: useFormatTime(response[i].created_at),
+          createTime: useFormatTime(response.data[i].created_at),
           // 更新时间
           // eslint-disable-next-line react-hooks/rules-of-hooks
-          updateTime: useFormatTime(response[i].updated_at),
-          // 作者图片
-          authorImg: response[i].owner.avatar_url,
+          updateTime: useFormatTime(response.data[i].updated_at),
           // 语言
-          languages: response[i].languages_url,
+          languages: response.data[i].languages_url,
           // 贡献者
-          contributors: response[i].contributors_url,
-          // 作者
-          author: response[i].owner.login,
+          contributors: response.data[i].contributors_url,
           // 地址
-          url: response[i].html_url,
+          url: response.data[i].html_url,
         });
       }
+
+      author = {
+        // 作者图片
+        authorImg: response.data[0].owner.avatar_url,
+        // 作者
+        author: response.data[0].owner.login,
+        // 地址
+        authorUrl: response.data[0].owner.html_url,
+      };
+      setAuthorData(author);
       setTableData(data);
     });
   }, [searchState]);
@@ -117,7 +131,7 @@ const App: React.FC = () => {
       setIsShow("hover_page_false");
       window.setTimeout(() => {
         setIsDisplay({ display: "none" });
-      }, 600);
+      }, 500);
     } else {
       setIsDisplay({ display: "block" });
       setIsShow("hover_page_false");
@@ -128,16 +142,33 @@ const App: React.FC = () => {
   };
 
   return (
-    <>
-      <Table
-        columns={columns}
-        dataSource={tableData}
-        pagination={{ pageSize: 50 }}
-      />
-      <div className={isShow} style={isDisplay}>
-        <HoverBox ShowHoverBox={ShowHoverBox} obj={obj}></HoverBox>
+    <div className="layout_content">
+      <div className="site-layout-background layout_left">
+        <div className="author_img">
+          <img src={authorData?.authorImg} alt="" />
+        </div>
+        <div className="author_name">{authorData?.author}</div>
+        <div className="target_button" style={{ marginTop: "20px" }}>
+          <button
+            onClick={() => {
+              window.open(authorData?.authorUrl);
+            }}
+          >
+            查看详情
+          </button>
+        </div>
       </div>
-    </>
+      <div className="site-layout-background layout_right">
+        <Table
+          columns={columns}
+          dataSource={tableData}
+          pagination={{ pageSize: 9 }}
+        />
+        <div className={isShow} style={isDisplay}>
+          <HoverBox ShowHoverBox={ShowHoverBox} obj={obj}></HoverBox>
+        </div>
+      </div>
+    </div>
   );
 };
 

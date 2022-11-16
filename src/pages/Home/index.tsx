@@ -6,9 +6,9 @@ import "./index.css";
 
 export default function App() {
   return (
-    <>
+    <div className="site-layout-background">
       <div className="home_title">Github仓库查看器</div>
       <Search />
-    </>
+    </div>
   );
 }

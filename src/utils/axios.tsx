@@ -7,7 +7,7 @@ export const GetRepos = async (userName: string) => {
   let answer;
   await axios
     .get(`${baseURL}/${userName}/repos`)
-    .then((response) => (answer = response.data));
+    .then((response) => (answer = response));
   return answer;
 };
 
@@ -18,28 +18,3 @@ export const GetResponse = async (url: string) => {
   });
   return answer;
 };
-
-/* axios.interceptors.request.use(
-  (config) => {
-    config.data = JSON.stringify(config.data);
-    config.headers = {
-      "Content-Type": "application/json",
-    };
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-axios.interceptors.response.use(
-  (response) => {
-    if (response.data.errCode === 2) {
-      console.log("过期了");
-    }
-    return response;
-  },
-  (error) => {
-    console.log("请求出错：", error);
-  }
-); */

@@ -1,22 +1,19 @@
-import { Breadcrumb, Layout } from "antd";
+import { Layout } from "antd";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
+import "./index.css";
+
 const { Content } = Layout;
 
-const App: React.FC = () => (
-  <>
-    <Content className="site-layout">
-      <Breadcrumb>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
-      <div className="site-layout-background">
+const App: React.FC = () => {
+  return (
+    <>
+      <Content className="site-layout">
         <Outlet />
-      </div>
-    </Content>
-  </>
-);
+      </Content>
+    </>
+  );
+};
 
 export default App;

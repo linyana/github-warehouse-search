@@ -13,12 +13,11 @@ interface propsTypes {
 let imgArr: string[];
 
 const App = (props: propsTypes) => {
-  const [contributors, setContributors] = useState<Array<string>>([]);
-  const [languages, setLanguages] = useState<Array<string>>([]);
+  const [contributors, setContributors] = useState<string[]>([]);
+  const [languages, setLanguages] = useState<string[]>([]);
   const { ShowHoverBox, obj } = props;
   const item = obj[0];
   const url = item?.url;
-  console.log(url);
 
   useEffect(() => {
     if (item) {
@@ -49,7 +48,7 @@ const App = (props: propsTypes) => {
         <div className="hover_total_title">{item?.name}</div>
         <div className="hover_author">
           {item?.author}
-          <span></span>
+          <span />
           {item?.createTime.slice(0, 10)}
         </div>
         <div className="hover_title">描述</div>
