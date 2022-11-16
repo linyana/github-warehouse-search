@@ -19,7 +19,7 @@ const App = () => {
 
   const handleLogin = () => {
     const loginValue = loginInput.current.value;
-    if (loginValue !== null && String(loginInput).trim() !== "") {
+    if (loginInput !== null && String(loginInput.current.value).trim() !== "") {
       window.localStorage.setItem("author", loginValue);
       navigate("/user/list", { replace: false });
       success("登录成功");
@@ -40,7 +40,16 @@ const App = () => {
           <div className="login_box">
             <div className="login_total_title">登录</div>
             <div className="login_input">
-              <input type="text" ref={loginInput} placeholder="请输入账号" />
+              <input
+                type="text"
+                onKeyDown={(e) => {
+                  if (e.code === "Enter") {
+                    handleLogin();
+                  }
+                }}
+                ref={loginInput}
+                placeholder="请输入账号"
+              />
             </div>
             <div className="login_input">
               <input type="password" placeholder="密码" />

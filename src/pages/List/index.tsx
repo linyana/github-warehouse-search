@@ -113,7 +113,9 @@ const App: React.FC = () => {
       };
       setAuthorData(author);
       setTableData(data);
-      window.localStorage.setItem("authorImg", authorData?.authorImg || "");
+      if (window.localStorage.getItem("author")) {
+        window.localStorage.setItem("authorImg", authorData?.authorImg || "");
+      }
     });
   }, [authorData?.authorImg, searchState]);
 

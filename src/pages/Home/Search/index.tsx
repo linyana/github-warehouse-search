@@ -10,7 +10,7 @@ export default function App() {
 
   const Search = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.code === "Enter") {
-      navigate("/list", {
+      navigate("/user/list", {
         replace: false,
         state: {
           searchState: searchInput.current.value,
