@@ -36,7 +36,13 @@ const App = () => {
             </div>
             <div className="button">
               <button onClick={handleLogin}>登录</button>
-              <button>游客</button>
+              <button
+                onClick={() => {
+                  navigate("/user/list", { replace: false });
+                }}
+              >
+                游客
+              </button>
             </div>
           </div>
         </div>
