@@ -1,0 +1,27 @@
+* {
+  transition: background-color 0.8s, color 0.8s;
+}
+
+.dark {
+  --background-color: #2d333b;
+  --color: #adbac7;
+  --nav-hover-background-color: rgb(88, 88, 88);
+  --body-background-color: #1c2128;
+  --hover-background-color: #22272e;
+  --box-shadow: #37393b;
+  --table-head-background-color: #22272e;
+  --table-body-background-color: #2d333b;
+  --input-background-color: #2d333b;
+}
+
+.light {
+  --background-color: white;
+  --color: #4e4d4d;
+  --nav-hover-background-color: rgb(235, 235, 235);
+  --body-background-color: #f0f2f5;
+  --hover-background-color: white;
+  --box-shadow: #cbd0d6;
+  --table-head-background-color: #fafafa;
+  --table-body-background-color: white;
+  --input-background-color: white;
+}

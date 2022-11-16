@@ -21,7 +21,7 @@ section.ant-layout {
 /* Header */
 
 Header {
-  position: fixed; 
+  position: fixed;
   z-index: 1;
   width: 100%;
 }
@@ -46,4 +46,84 @@ nav.ant-breadcrumb {
 
 Footer {
   text-align: center;
+}
+
+.ant-layout-footer {
+  background-color: var(--background-color);
+}
+
+.ant-table-thead > tr > th {
+  color: var(--color);
+  background-color: var(--table-head-background-color);
+}
+
+.ant-table-tbody {
+  background-color: var(--table-body-background-color);
+}
+
+tr:hover {
+  background-color: var(--background-color) !important;
+}
+
+.ant-table-tbody > tr > td,
+.ant-table-thead > tr > th {
+  border-bottom: 1px solid var(--body-background-color) !important;
+}
+
+.ant-table-cell-row-hover {
+  background-color: var(--nav-hover-background-color) !important;
+}
+
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link,
+.ant-pagination-item-active,
+.ant-pagination-item {
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+.ant-pagination-item a {
+  color: var(--color);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  /*水平滚动条的样式*/
+  width: 4px;
+  background-color: var(--background-color);
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: var(--background-color);
+  /*滚动条的背景颜色*/
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  /*滚动条的圆角宽度*/
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 50px;
+  background-color: var(--background-color);
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  outline: 2px solid var(--nav-hover-background-color);
+  outline-offset: -2px;
+  border: 2px solid var(--nav-hover-background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  height: 50px;
+  background-color: var(--table-body-background-color);
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.ant-table {
+  background-color: var(--table-body-background-color);
 }

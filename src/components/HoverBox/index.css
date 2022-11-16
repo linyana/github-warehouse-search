@@ -14,7 +14,7 @@
   margin: 0 auto;
   transform: translateY(25%);
   height: 70%;
-  background-color: #fff;
+  background-color: var(--hover-background-color);
   z-index: 99;
   padding: 40px;
 }
@@ -77,7 +77,7 @@
 .hover_author {
   text-align: center;
   font-size: 18px;
-  color: rgba(136, 130, 130, 0.8);
+  color: var(--color);
 }
 
 .hover_author span {

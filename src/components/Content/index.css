@@ -19,7 +19,8 @@
 }
 
 .layout_content > div {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 4px var(--box-shadow);
+  border: 0.5px solid var(--box-shadow);
 }
 
 @media screen and (max-width: 1200px) {

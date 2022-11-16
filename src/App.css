@@ -4,16 +4,22 @@
   height: 100%;
 }
 
-.dark {
+#root > div {
   height: 100%;
-  --background-color: rgb(71, 72, 75);
-}
-
-.light {
-  height: 100%;
-  --background-color: white;
 }
 
 * {
-  color: #4e4d4d;
+  color: var(--color);
+}
+
+body,
+.ant-layout {
+  background-color: var(--body-background-color);
+}
+
+.site-layout .site-layout-background,
+.site-layout-background {
+  background-color: var(--hover-background-color) !important;
+  box-shadow: 0 0 4px var(--box-shadow);
+  border: 0.5px solid var(--box-shadow);
 }

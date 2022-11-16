@@ -7,6 +7,7 @@ import { RootState } from "./store";
 import Loading from "./pages/Loading";
 
 import "./App.css";
+import "./theme/index.css";
 
 export default function App() {
   const theme = useSelector((state: RootState) => state.theme.theme);

@@ -17,9 +17,13 @@
   width: 50%;
   text-align: center;
   line-height: 60px;
-  color: white;
+  color: var(--color);
 }
 
 .nav_active {
-  background-color: rgb(88, 88, 88);
+  background-color: var(--nav-hover-background-color);
+}
+
+.nav:hover {
+  background-color: var(--nav-hover-background-color);
 }
