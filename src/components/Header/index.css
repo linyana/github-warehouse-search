@@ -27,3 +27,29 @@
 .nav:hover {
   background-color: var(--nav-hover-background-color);
 }
+
+.nav_right {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.change_theme {
+  cursor: pointer;
+}
+
+.change_theme img {
+  width: 30px;
+  height: 30px;
+  margin-top: 15px;
+}
+
+.login {
+  cursor: pointer;
+}
+
+.login img {
+  width: 30px;
+  height: 30px;
+  margin-top: 15px;
+}
