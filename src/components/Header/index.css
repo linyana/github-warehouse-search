@@ -1,4 +1,25 @@
 .header {
   height: 60px;
-  background-color: rgb(71, 72, 75);
+  width: 100%;
+  padding: 0 50px;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.navs {
+  width: 40%;
+  max-width: 150px;
+}
+
+.nav {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  line-height: 60px;
+  color: white;
+}
+
+.nav_active {
+  background-color: rgb(88, 88, 88);
 }

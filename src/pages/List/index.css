@@ -22,18 +22,18 @@
 
 .ant-table {
   overflow-y: scroll;
-  height: calc(100% - 112px);
+  height: calc(100% - 60px);
 }
 
 .layout_left {
   padding: 40px;
   width: 25%;
-  height: 100%;
+  height: 90%;
 }
 
 .layout_right {
   width: 68%;
-  height: 100%;
+  height: 90%;
 }
 
 .layout_content {
