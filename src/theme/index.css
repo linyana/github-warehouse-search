@@ -12,6 +12,8 @@
   --table-head-background-color: #22272e;
   --table-body-background-color: #2d333b;
   --input-background-color: #2d333b;
+  --input-placeholder-color: rgb(146, 141, 141);
+  background-color: var(--body-background-color);
 }
 
 .light {
@@ -24,4 +26,6 @@
   --table-head-background-color: #fafafa;
   --table-body-background-color: white;
   --input-background-color: white;
+  --input-placeholder-color: rgb(146, 141, 141);
+  background-color: var(--body-background-color);
 }

@@ -36,6 +36,8 @@ const App: React.FC = () => {
   const [obj, setObj] = useState({});
   const [authorData, setAuthorData] = useState<AuthorTypes>({});
 
+  const authorName = window.localStorage.getItem("author") || "linyana";
+
   // 数据列表
   const columns: ColumnsType<DataTypes> = [
     {
@@ -71,7 +73,7 @@ const App: React.FC = () => {
   // 获取路由参数
   const getsearchState = useLocation().state;
   const searchState =
-    getsearchState === null ? "linyana" : getsearchState.searchState;
+    getsearchState === null ? authorName : getsearchState.searchState;
   // 获取接口数据
   useEffect(() => {
     GetRepos(searchState).then((response: any) => {
@@ -111,8 +113,9 @@ const App: React.FC = () => {
       };
       setAuthorData(author);
       setTableData(data);
+      window.localStorage.setItem("authorImg", authorData?.authorImg || "");
     });
-  }, [searchState]);
+  }, [authorData?.authorImg, searchState]);
 
   // 查看的点击事件
   const checkMore = (row: any, key: any) => {

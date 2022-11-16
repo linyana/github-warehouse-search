@@ -1,0 +1,99 @@
+.login {
+  width: 80%;
+  height: 600px;
+  margin: 150px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login > div {
+  padding: 50px;
+  height: 100%;
+}
+
+.login_left {
+  width: 50%;
+  text-align: center;
+}
+
+.login_left img {
+  width: 80%;
+}
+
+.login_right {
+  width: 50%;
+}
+
+.login_box {
+  width: 500px;
+  height: 90%;
+  border: 1px solid var(--box-shadow);
+  box-shadow: 0 0 5px var(--box-shadow);
+  padding: 30px;
+  border-radius: 15px;
+  background-color: var(--hover-background-color);
+}
+
+.login_total_title {
+  text-align: center;
+  line-height: 80px;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(color);
+}
+
+.login_input {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.login_input input {
+  width: 80%;
+  outline: none;
+  border: 2px solid var(--box-shadow);
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  transition: all 0.8s;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color);
+  background-color: var(--input-background-color);
+}
+
+.login_input input::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+.button {
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button button {
+  cursor: pointer;
+  width: 120px;
+  height: 35px;
+  outline: none;
+  border: none;
+  color: white;
+  background-color: rgb(113, 91, 207);
+}
+
+.button button:hover {
+  background-color: rgb(144, 125, 228);
+}
+
+@media screen and (max-width: 1200px) {
+  .login_left {
+    display: none;
+  }
+
+  .login-right {
+    width: 100%;
+  }
+}

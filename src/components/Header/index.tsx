@@ -22,23 +22,30 @@ const App: React.FC = () => {
       ? require("../../assets/images/dark.png")
       : require("../../assets/images/light.png");
 
-  const loginSrc =
-    theme === "dark"
-      ? require("../../assets/images/logindark.png")
-      : require("../../assets/images/loginlight.png");
+  const authorImg = window.localStorage.getItem("authorImg");
+
+  let loginSrc;
+  if (authorImg !== null) {
+    loginSrc = authorImg;
+  } else {
+    loginSrc =
+      theme === "dark"
+        ? require("../../assets/images/logindark.png")
+        : require("../../assets/images/loginlight.png");
+  }
 
   return (
     <div className="header">
       <div className="navs">
-        <MyNavLink to="home">首页</MyNavLink>
-        <MyNavLink to="list">列表</MyNavLink>
+        <MyNavLink to="/user/home">首页</MyNavLink>
+        <MyNavLink to="/user/list">列表</MyNavLink>
       </div>
       <div className="nav_right">
         <div className="change_theme" onClick={handleChangeTheme}>
           <img src={themeSrc} alt="" />
         </div>
         <div
-          className="login"
+          className="login_img"
           onClick={() => {
             navigate("/login", { replace: false });
           }}
