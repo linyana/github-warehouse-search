@@ -1,8 +1,17 @@
 import React, { MutableRefObject, useRef } from "react";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router";
+import { message } from "antd";
 
 import "./index.css";
+
+const success = (msg: string) => {
+  message.success(msg);
+};
+
+const warning = (msg: string) => {
+  message.warning(msg);
+};
 
 const App = () => {
   const loginInput: MutableRefObject<any> = useRef(null);
@@ -13,8 +22,10 @@ const App = () => {
     if (loginValue !== null && String(loginInput).trim() !== "") {
       window.localStorage.setItem("author", loginValue);
       navigate("/user/list", { replace: false });
+      success("登录成功");
     } else {
       navigate("/user/list", { replace: false });
+      warning("成功以游客身份登录");
     }
   };
 

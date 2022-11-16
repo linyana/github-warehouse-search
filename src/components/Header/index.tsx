@@ -4,11 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../store";
 import { useNavigate } from "react-router-dom";
 
+import { message } from "antd";
+
 import MyNavLink from "../MyNavLink";
 
 import "./index.css";
 
+const error = (msg: string) => {
+  message.error(msg);
+};
+
+const success = (msg: string) => {
+  message.success(msg);
+};
+
 const App: React.FC = () => {
+  const [refresh, setRefresh] = useState(false);
   const [loginSrc, setLoginSrc] = useState<string>();
   const dispatch: AppDispatch = useDispatch();
   const handleChangeTheme = () => {
@@ -18,10 +29,26 @@ const App: React.FC = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    refresh && setTimeout(() => setRefresh(false));
+  }, [refresh]);
+
   const handleExit = () => {
     window.localStorage.removeItem("author");
     window.localStorage.removeItem("authorImg");
     navigate("/login", { replace: false });
+    success("注销成功");
+  };
+
+  const handleLogin = () => {
+    if (
+      window.localStorage.getItem("author") !== null &&
+      window.localStorage.getItem("author")?.trim() !== ""
+    ) {
+      error("请勿重复登录");
+    } else {
+      navigate("/login", { replace: false });
+    }
   };
 
   const themeSrc =
@@ -46,7 +73,8 @@ const App: React.FC = () => {
           : require("../../assets/images/loginlight.png")
       );
     }
-  }, [authorImg, theme]);
+    refresh && setTimeout(() => setRefresh(false));
+  }, [authorImg, refresh, theme]);
 
   return (
     <div className="header">
@@ -58,12 +86,7 @@ const App: React.FC = () => {
         <div className="change_theme" onClick={handleChangeTheme}>
           <img src={themeSrc} alt="" />
         </div>
-        <div
-          className="login_img"
-          onClick={() => {
-            navigate("/login", { replace: false });
-          }}
-        >
+        <div className="login_img" onClick={handleLogin}>
           <img src={loginSrc} alt="" />
         </div>
         <div className="exit" onClick={handleExit}>
