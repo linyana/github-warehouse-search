@@ -7,14 +7,19 @@ export const GetRepos = async (userName: string) => {
   let answer;
   await axios
     .get(`${baseURL}/${userName}/repos`)
-    .then((response) => (answer = response));
+    .then((response) => (answer = response))
+    .catch((error) => console.error(error));
   return answer;
 };
 
 export const GetResponse = async (url: string) => {
   let answer;
-  await axios.get(url).then((response) => {
-    answer = response;
-  });
+  await axios
+    .get(url)
+    .then((response) => {
+      answer = response;
+    })
+    .catch((error) => console.error(error));
+
   return answer;
 };
