@@ -15,9 +15,10 @@ const warning = (msg: string) => {
 
 const App = () => {
   const loginInput: MutableRefObject<any> = useRef(null);
+  const passwordInput: MutableRefObject<any> = useRef(null);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (): void => {
     const loginValue = loginInput.current.value;
     if (loginInput !== null && String(loginInput.current.value).trim() !== "") {
       window.localStorage.setItem("author", loginValue);
@@ -44,7 +45,7 @@ const App = () => {
                 type="text"
                 onKeyDown={(e) => {
                   if (e.code === "Enter") {
-                    handleLogin();
+                    passwordInput.current.focus();
                   }
                 }}
                 ref={loginInput}
@@ -52,7 +53,16 @@ const App = () => {
               />
             </div>
             <div className="login_input">
-              <input type="password" placeholder="密码" />
+              <input
+                type="password"
+                ref={passwordInput}
+                placeholder="密码"
+                onKeyDown={(e) => {
+                  if (e.code === "Enter") {
+                    handleLogin();
+                  }
+                }}
+              />
             </div>
             <div className="button">
               <button onClick={handleLogin}>登录</button>

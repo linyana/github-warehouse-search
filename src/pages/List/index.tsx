@@ -76,40 +76,41 @@ const App: React.FC = () => {
     getsearchState === null ? authorName : getsearchState.searchState;
   // 获取接口数据
   useEffect(() => {
-    GetRepos(searchState).then((response: any) => {
+    GetRepos(searchState).then((response: any): void => {
       data = [];
       author = {};
       for (let i = 0; i < response.data?.length; i++) {
+        const res = response.data[i];
         data.push({
           // key
-          key: response.data[i].id,
+          key: res.id,
           // 名字
-          name: response.data[i].name,
+          name: res.name,
           // 描述
-          description:
-            response.data[i].description || "作者太懒了，没有进行描述",
+          description: res.description || "作者太懒了，没有进行描述",
           // 起始时间
           // eslint-disable-next-line react-hooks/rules-of-hooks
-          createTime: useFormatTime(response.data[i].created_at),
+          createTime: useFormatTime(res.created_at),
           // 更新时间
           // eslint-disable-next-line react-hooks/rules-of-hooks
-          updateTime: useFormatTime(response.data[i].updated_at),
+          updateTime: useFormatTime(res.updated_at),
           // 语言
-          languages: response.data[i].languages_url,
+          languages: res.languages_url,
           // 贡献者
-          contributors: response.data[i].contributors_url,
+          contributors: res.contributors_url,
           // 地址
-          url: response.data[i].html_url,
+          url: res.html_url,
         });
       }
 
+      const authorRes = response.data[0].owner;
       author = {
         // 作者图片
-        authorImg: response.data[0].owner.avatar_url,
+        authorImg: authorRes.avatar_url,
         // 作者
-        author: response.data[0].owner.login,
+        author: authorRes.login,
         // 地址
-        authorUrl: response.data[0].owner.html_url,
+        authorUrl: authorRes.html_url,
       };
       setAuthorData(author);
       setTableData(data);
