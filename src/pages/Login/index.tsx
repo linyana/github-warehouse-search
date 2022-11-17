@@ -24,6 +24,9 @@ const App = () => {
       window.localStorage.setItem("author", loginValue);
       navigate("/user/list", { replace: false });
       success("登录成功");
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
     } else {
       navigate("/user/list", { replace: false });
       warning("成功以游客身份登录");

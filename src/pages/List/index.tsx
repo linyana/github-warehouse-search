@@ -74,6 +74,7 @@ const App: React.FC = () => {
   const getsearchState = useLocation().state;
   const searchState =
     getsearchState === null ? authorName : getsearchState.searchState;
+
   // 获取接口数据
   useEffect(() => {
     GetRepos(searchState).then((response: any): void => {
