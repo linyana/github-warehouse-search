@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgithub_warehouse_search=self.webpackChunkgithub_warehouse_search||[]).push([[666],{2708:function(e,s,n){n.r(s),n.d(s,{default:function(){return r}});n(2791);var t=n(7043),u=n(184);function r(){return(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(t.Z,{}),(0,u.jsxs)("div",{className:"notfound",children:[(0,u.jsx)("div",{className:"notfound_title",children:"404"}),(0,u.jsx)("div",{className:"notfound_text",children:"\u9875\u9762\u627e\u4e0d\u5230\u4e86"})]})]})}}}]);
+//# sourceMappingURL=666.71ddec71.chunk.js.map
