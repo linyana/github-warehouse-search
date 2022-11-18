@@ -11,7 +11,7 @@ const container = ReactDom.createRoot(
 
 container.render(
   <Provider store={store}>
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <App />
     </HashRouter>
   </Provider>
