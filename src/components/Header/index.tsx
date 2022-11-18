@@ -34,10 +34,17 @@ const App: React.FC = () => {
   }, [refresh]);
 
   const handleExit = () => {
-    window.localStorage.removeItem("author");
-    window.localStorage.removeItem("authorImg");
-    navigate("/login", { replace: false });
-    success("注销成功");
+    if (
+      window.localStorage.getItem("author") !== null &&
+      window.localStorage.getItem("author")?.trim() !== ""
+    ) {
+      window.localStorage.removeItem("author");
+      window.localStorage.removeItem("authorImg");
+      navigate("/login", { replace: false });
+      success("注销成功");
+    } else {
+      error("未登录");
+    }
   };
 
   const handleLogin = () => {
