@@ -19,7 +19,6 @@ const success = (msg: string) => {
 };
 
 const App: React.FC = () => {
-  const [refresh, setRefresh] = useState(false);
   const [loginSrc, setLoginSrc] = useState<string>();
   const dispatch: AppDispatch = useDispatch();
   const handleChangeTheme = () => {
@@ -28,10 +27,6 @@ const App: React.FC = () => {
   const theme = useSelector((state: RootState) => state.theme.theme);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    refresh && setTimeout(() => setRefresh(false));
-  }, [refresh]);
 
   const handleExit = () => {
     if (
@@ -71,7 +66,7 @@ const App: React.FC = () => {
   const authorImg = window.localStorage.getItem("authorImg");
 
   useEffect(() => {
-    if (authorImg !== null) {
+    if (authorImg !== null && authorImg.trim() !== "") {
       setLoginSrc(authorImg);
     } else {
       setLoginSrc(
@@ -80,8 +75,7 @@ const App: React.FC = () => {
           : require("../../assets/images/loginlight.png")
       );
     }
-    refresh && setTimeout(() => setRefresh(false));
-  }, [authorImg, refresh, theme]);
+  }, [authorImg, theme]);
 
   return (
     <div className="header">
