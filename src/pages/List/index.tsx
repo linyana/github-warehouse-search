@@ -35,6 +35,7 @@ const App: React.FC = () => {
   const [isShow, setIsShow] = useState<string>("hover_page_false");
   const [isDisplay, setIsDisplay] = useState({ display: "none" });
   const [isTable, setIsTable] = useState({ display: "none" });
+  const [isLoad, setIsLoad] = useState({ display: "block" });
   const [obj, setObj] = useState({});
   const [authorData, setAuthorData] = useState<AuthorTypes>({});
 
@@ -121,6 +122,7 @@ const App: React.FC = () => {
         window.localStorage.setItem("authorImg", authorData?.authorImg || "");
       }
       setIsTable({ display: "block" });
+      setIsLoad({ display: "none" });
     });
   }, [authorData?.authorImg, searchState]);
 
@@ -169,7 +171,7 @@ const App: React.FC = () => {
         </div>
       </div>
       <div className="site-layout-background layout_right">
-        <div className="list_load">
+        <div className="list_load" style={isLoad}>
           <Loading />
         </div>
         <div className="list_table" style={isTable}>
