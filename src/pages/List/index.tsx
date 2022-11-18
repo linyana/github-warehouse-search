@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import HoverBox from "../../components/HoverBox";
 import { GetRepos } from "../../utils/axios";
 import useFormatTime from "../../hooks/useFormatTime";
+import Loading from "../Loading";
 
 import "./index.css";
 
@@ -33,6 +34,7 @@ const App: React.FC = () => {
   const [tableData, setTableData] = useState<Array<DataTypes>>();
   const [isShow, setIsShow] = useState<string>("hover_page_false");
   const [isDisplay, setIsDisplay] = useState({ display: "none" });
+  const [isTable, setIsTable] = useState({ display: "none" });
   const [obj, setObj] = useState({});
   const [authorData, setAuthorData] = useState<AuthorTypes>({});
 
@@ -118,6 +120,7 @@ const App: React.FC = () => {
       if (window.localStorage.getItem("author")) {
         window.localStorage.setItem("authorImg", authorData?.authorImg || "");
       }
+      setIsTable({ display: "block" });
     });
   }, [authorData?.authorImg, searchState]);
 
@@ -166,11 +169,16 @@ const App: React.FC = () => {
         </div>
       </div>
       <div className="site-layout-background layout_right">
-        <Table
-          columns={columns}
-          dataSource={tableData}
-          pagination={{ pageSize: 9 }}
-        />
+        <div className="list_load">
+          <Loading />
+        </div>
+        <div className="list_table" style={isTable}>
+          <Table
+            columns={columns}
+            dataSource={tableData}
+            pagination={{ pageSize: 9 }}
+          />
+        </div>
         <div className={isShow} style={isDisplay}>
           <HoverBox ShowHoverBox={ShowHoverBox} obj={obj}></HoverBox>
         </div>
