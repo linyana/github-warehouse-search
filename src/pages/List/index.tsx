@@ -2,7 +2,7 @@ import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState, useRef, MutableRefObject } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import HoverBox from "../../components/HoverBox";
 import { GetRepos } from "../../utils/axios";

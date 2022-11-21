@@ -23,10 +23,18 @@ const App = () => {
     if (loginInput !== null && String(loginInput.current.value).trim() !== "") {
       window.localStorage.setItem("author", loginValue);
       navigate("/user/list", { replace: false });
-      success("登录成功");
-      /*     setTimeout(() => {
-        window.location.reload();
-      }, 200); */
+      const hour = new Date().getHours();
+      let time: string = "";
+      if(hour < 8){
+        time = "凌晨好,"
+      }else if(hour >= 8 && hour < 12){
+        time = "早上好,"
+      }else if(hour >= 12 && hour < 18){
+        time = "下午好,"
+      }else {
+        time = "晚上好,"
+      }
+      success(time + loginValue);
     } else {
       navigate("/user/list", { replace: false });
       warning("成功以游客身份登录");
