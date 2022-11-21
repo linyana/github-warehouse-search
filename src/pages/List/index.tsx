@@ -158,14 +158,15 @@ const App: React.FC = () => {
       setAuthorData(author);
       setTableData(data);
       setFilterData(data);
-      if (window.localStorage.getItem("author")) {
+      if (window.localStorage.getItem("author") === authorData?.author) {
         window.localStorage.setItem("authorImg", authorData?.authorImg || "");
       }
+      console.log(window.localStorage.getItem("author"));
       setIsTable({ display: "block" });
       setIsLoad({ display: "none" });
       dispatch(GetImg());
     });
-  }, [authorData?.authorImg, dispatch, searchState]);
+  }, [authorData?.author, authorData?.authorImg, dispatch, searchState]);
 
   // 查看的点击事件
   const checkMore = (row: any, key: any) => {
