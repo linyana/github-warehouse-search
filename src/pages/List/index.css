@@ -62,3 +62,36 @@
 .target_button {
   text-align: center;
 }
+
+.list_table {
+  height: 85%;
+}
+
+.list_input {
+  padding-top: 20px;
+  height: 15%;
+  text-align: center;
+}
+
+.list_input input {
+  width: 40%;
+  min-width: 300px;
+  outline: none;
+  border: 2px solid var(--box-shadow);
+  border-radius: 15px;
+  padding: 5px;
+  text-align: center;
+  transition: all 0.8s;
+  height: 46px;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(112, 116, 124);
+  background-color: var(--input-background-color);
+}
+
+.list_input input:focus {
+  width: 70%;
+  box-shadow: 0 0 5px var(--input-placeholder-color);
+  border: 2px solid var(--input-placeholder-color);
+  color: var(--color);
+}

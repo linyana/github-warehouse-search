@@ -1,7 +1,7 @@
 import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useLocation } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, MutableRefObject } from "react";
 
 import HoverBox from "../../components/HoverBox";
 import { GetRepos } from "../../utils/axios";
@@ -43,7 +43,32 @@ const App: React.FC = () => {
   const [isLoad, setIsLoad] = useState({ display: "block" });
   const [obj, setObj] = useState({});
   const [authorData, setAuthorData] = useState<AuthorTypes>({});
+  const [filterData, setFilterData] = useState<Array<DataTypes>>();
 
+  // ref
+  const listInput: MutableRefObject<any> = useRef(null);
+
+  const changeInputValue = () => {
+    setFilterData(
+      data.filter((item) => {
+        if (item.name?.includes(listInput.current.value)) {
+          return true;
+        } else if (item.description?.includes(listInput.current.value)) {
+          return true;
+        } else if (item.createTime?.includes(listInput.current.value)) {
+          return true;
+        } else if (item.updateTime?.includes(listInput.current.value)) {
+          return true;
+        }
+        return false;
+      })
+    );
+    if (listInput.current.value.trim() === "") {
+      setFilterData(tableData);
+    }
+  };
+
+  // 初始化
   const authorName = window.localStorage.getItem("author") || "linyana";
 
   // 数据列表
@@ -127,6 +152,7 @@ const App: React.FC = () => {
 
       setAuthorData(author);
       setTableData(data);
+      setFilterData(data);
       if (window.localStorage.getItem("author")) {
         window.localStorage.setItem("authorImg", authorData?.authorImg || "");
       }
@@ -183,10 +209,17 @@ const App: React.FC = () => {
         <div className="list_load" style={isLoad}>
           <Loading />
         </div>
+        <div className="list_input">
+          <input
+            type="text"
+            ref={listInput}
+            onKeyUp={() => changeInputValue()}
+          />
+        </div>
         <div className="list_table" style={isTable}>
           <Table
             columns={columns}
-            dataSource={tableData}
+            dataSource={filterData}
             pagination={{ pageSize: 9 }}
           />
         </div>
