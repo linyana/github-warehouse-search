@@ -7,8 +7,13 @@ import HoverBox from "../../components/HoverBox";
 import { GetRepos } from "../../utils/axios";
 import useFormatTime from "../../hooks/useFormatTime";
 import Loading from "../Loading";
+import { message } from "antd";
 
 import "./index.css";
+
+const error = (msg: string) => {
+  message.error(msg);
+};
 
 interface DataTypes {
   key?: React.Key;
@@ -83,39 +88,43 @@ const App: React.FC = () => {
     GetRepos(searchState).then((response: any): void => {
       data = [];
       author = {};
-      for (let i = 0; i < response.data?.length; i++) {
-        const res = response.data[i];
-        data.push({
-          // key
-          key: res.id,
-          // 名字
-          name: res.name,
-          // 描述
-          description: res.description || "作者太懒了，没有进行描述",
-          // 起始时间
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          createTime: useFormatTime(res.created_at),
-          // 更新时间
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          updateTime: useFormatTime(res.updated_at),
-          // 语言
-          languages: res.languages_url,
-          // 贡献者
-          contributors: res.contributors_url,
+      if (response === undefined) {
+        error("数据获取失败");
+      } else {
+        for (let i = 0; i < response.data?.length; i++) {
+          const res = response.data[i];
+          data.push({
+            // key
+            key: res.id,
+            // 名字
+            name: res.name,
+            // 描述
+            description: res.description || "作者太懒了，没有进行描述",
+            // 起始时间
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            createTime: useFormatTime(res.created_at),
+            // 更新时间
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            updateTime: useFormatTime(res.updated_at),
+            // 语言
+            languages: res.languages_url,
+            // 贡献者
+            contributors: res.contributors_url,
+            // 地址
+            url: res.html_url,
+          });
+        }
+        const authorRes = response.data[0].owner;
+        author = {
+          // 作者图片
+          authorImg: authorRes.avatar_url,
+          // 作者
+          author: authorRes.login,
           // 地址
-          url: res.html_url,
-        });
+          authorUrl: authorRes.html_url,
+        };
       }
 
-      const authorRes = response.data[0].owner;
-      author = {
-        // 作者图片
-        authorImg: authorRes.avatar_url,
-        // 作者
-        author: authorRes.login,
-        // 地址
-        authorUrl: authorRes.html_url,
-      };
       setAuthorData(author);
       setTableData(data);
       if (window.localStorage.getItem("author")) {

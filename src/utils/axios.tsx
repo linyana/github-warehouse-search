@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.timeout = 100000;
+axios.defaults.timeout = 1000000;
 const baseURL = "https://api.github.com/users";
 
 const handleNetworkError = (errStatus: number) => {
@@ -57,7 +57,7 @@ export const GetRepos = async (userName: string) => {
   await axios
     .get(`${baseURL}/${userName}/repos`)
     .then((response) => (answer = response))
-    .catch((error) => console.error(handleNetworkError(error.response.status)));
+    .catch((error) => console.error(handleNetworkError(error.response)));
   return answer;
 };
 
@@ -68,7 +68,7 @@ export const GetResponse = async (url: string) => {
     .then((response) => {
       answer = response;
     })
-    .catch((error) => console.error(handleNetworkError(error.response.status)));
+    .catch((error) => console.error(handleNetworkError(error.response)));
 
   return answer;
 };
