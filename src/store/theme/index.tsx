@@ -13,8 +13,8 @@ export const themeSlice = createSlice({
   initialState,
   reducers: {
     changeTheme: (state) => {
-      let localtheme = window.localStorage.getItem("theme");
-      if (localtheme === "light") {
+      let localTheme = window.localStorage.getItem("theme");
+      if (localTheme === "light") {
         state.theme = "dark";
         window.localStorage.setItem("theme", "dark");
       } else {
