@@ -9,6 +9,7 @@ import { message } from "antd";
 import MyNavLink from "../MyNavLink";
 
 import "./index.css";
+import { GetImg } from "../../store/img";
 
 const error = (msg: string) => {
   message.error(msg);
@@ -25,6 +26,7 @@ const App: React.FC = () => {
     dispatch(changeTheme());
   };
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const img = useSelector((state: RootState) => state.img.img);
 
   const navigate = useNavigate();
 
@@ -35,6 +37,7 @@ const App: React.FC = () => {
     ) {
       window.localStorage.removeItem("author");
       window.localStorage.removeItem("authorImg");
+      dispatch(GetImg());
       navigate("/login", { replace: false });
       success("注销成功");
     } else {
@@ -63,11 +66,9 @@ const App: React.FC = () => {
       ? require("../../assets/images/outdark.png")
       : require("../../assets/images/outlight.png");
 
-  const authorImg = window.localStorage.getItem("authorImg");
-
   useEffect(() => {
-    if (authorImg !== null && authorImg.trim() !== "") {
-      setLoginSrc(authorImg);
+    if (img !== null && img.trim() !== "") {
+      setLoginSrc(img);
     } else {
       setLoginSrc(
         theme === "dark"
@@ -75,7 +76,7 @@ const App: React.FC = () => {
           : require("../../assets/images/loginlight.png")
       );
     }
-  }, [authorImg, theme]);
+  }, [img, theme]);
 
   return (
     <div className="header">

@@ -2,6 +2,7 @@ import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState, useRef, MutableRefObject } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import HoverBox from "../../components/HoverBox";
 import { GetRepos } from "../../utils/axios";
@@ -10,6 +11,7 @@ import Loading from "../Loading";
 import { message } from "antd";
 
 import "./index.css";
+import { GetImg } from "../../store/img";
 
 const error = (msg: string) => {
   message.error(msg);
@@ -44,6 +46,9 @@ const App: React.FC = () => {
   const [obj, setObj] = useState({});
   const [authorData, setAuthorData] = useState<AuthorTypes>({});
   const [filterData, setFilterData] = useState<Array<DataTypes>>();
+
+  // dispatch
+  const dispatch = useDispatch();
 
   // ref
   const listInput: MutableRefObject<any> = useRef(null);
@@ -158,8 +163,9 @@ const App: React.FC = () => {
       }
       setIsTable({ display: "block" });
       setIsLoad({ display: "none" });
+      dispatch(GetImg());
     });
-  }, [authorData?.authorImg, searchState]);
+  }, [authorData?.authorImg, dispatch, searchState]);
 
   // 查看的点击事件
   const checkMore = (row: any, key: any) => {
