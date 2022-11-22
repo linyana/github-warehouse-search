@@ -22,15 +22,15 @@ const success = (msg: string) => {
 const App: React.FC = () => {
   const [loginSrc, setLoginSrc] = useState<string>();
   const dispatch: AppDispatch = useDispatch();
-  const handleChangeTheme = () => {
+  const handleChangeTheme = (): void => {
     dispatch(changeTheme());
   };
-  const theme = useSelector((state: RootState) => state.theme.theme);
-  const img = useSelector((state: RootState) => state.img.img);
+  const theme: string = useSelector((state: RootState) => state.theme.theme);
+  const img: string | null = useSelector((state: RootState) => state.img.img);
 
   const navigate = useNavigate();
 
-  const handleExit = () => {
+  const handleExit = (): void => {
     if (
       window.localStorage.getItem("author") !== null &&
       window.localStorage.getItem("author")?.trim() !== ""
@@ -45,7 +45,7 @@ const App: React.FC = () => {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = (): void => {
     if (
       window.localStorage.getItem("author") !== null &&
       window.localStorage.getItem("author")?.trim() !== ""

@@ -161,7 +161,6 @@ const App: React.FC = () => {
       if (window.localStorage.getItem("author") === authorData?.author) {
         window.localStorage.setItem("authorImg", authorData?.authorImg || "");
       }
-      console.log(window.localStorage.getItem("author"));
       setIsTable({ display: "block" });
       setIsLoad({ display: "none" });
       dispatch(GetImg());
